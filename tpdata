@@ -1,0 +1,45 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+import sys
+import os
+import numpy as np
+import pandas as pd
+import string
+
+def snakify(txt):
+    if not txt: 
+        return ""
+    try:
+        txt = unicode(txt)
+    except:
+        raise ValueError('Cant convert {} to unicode'.format(txt))
+    exclude = "".join(ch for ch in string.punctuation if ch not in ('_', '#'))
+    txt = txt.strip().lower()
+    txt = "".join(ch for ch in txt if ch not in exclude)
+    return "_".join(txt.split())
+
+url = "http://joshmadison.com/2007/05/09/toilet-paper-usage-analysis/"
+if __name__ == '__main__':
+    try:
+        df = pd.read_html(url, header=0, parse_dates=['Start Date', 'End Date'])[0]
+        df.columns = columns=map(snakify, df.columns)
+    except:
+        sys.stderr.write("Wha OH! Can't find the data.\n{}".format(url))
+        sys.exit(1)
+    
+    dataset_info = (
+        ("title", "TOILET PAPER USAGE ANALYSIS"),
+        ("author", "JOSH MADISON"),
+        ('nrow', len(df)),
+        ('ncol', len(df.columns)),
+        ("published_at", pd.to_datetime("May 9, 2007")),
+        ("downloaded_at", pd.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')),
+        ("source_url", "http://joshmadison.com/2007/05/09/toilet-paper-usage-analysis/"),
+        ('description', "...'it was this curiosity that led me to start keeping track of how much [toilet paper] I actually do use.' ~ Josh Madison")
+    )
+    with open('README.md', 'w') as README:
+        README.write(os.linesep.join(['{k}: {v}'.format(k=k, v=v)  for k,v in dataset_info]))
+    sys.stdout.write('`README.md` created'+os.linesep)
+    df.to_csv('toilet_paper_usage.csv', index=False)
+    sys.stdout.write('`toilet_paper_usage.csv` created'+os.linesep)
+    sys.exit(0)
