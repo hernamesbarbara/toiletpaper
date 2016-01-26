@@ -1,15 +1,16 @@
-title: TOILET PAPER USAGE ANALYSIS
+<b>title</b>: TOILET PAPER USAGE ANALYSIS
 
-author: JOSH MADISON
+<b>author</b>: JOSH MADISON
 
-nrow: 49
+<b>nrow</b>: 49
 
-ncol: 6
+<b>ncol</b>: 6
 
-published_at: 2007-05-09 00:00:00
+<b>published_at</b>: 2007-05-09 00:00:00
 
-downloaded_at: 2016-01-26 23:54:20
+<b>downloaded_at</b>: 2016-01-26 23:55:45
 
-source_url: http://joshmadison.com/2007/05/09/toilet-paper-usage-analysis/
+<b>source_url</b>: http://joshmadison.com/2007/05/09/toilet-paper-usage-analysis/
 
-description: ...'it was this curiosity that led me to start keeping track of how much [toilet paper] I actually do use.' ~ Josh Madison
+<b>description</b>: ...'it was this curiosity that led me to start keeping track of how much [toilet paper] I actually do use.'
+~ Josh Madison

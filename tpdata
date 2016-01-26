@@ -35,10 +35,10 @@ if __name__ == '__main__':
         ("published_at", pd.to_datetime("May 9, 2007")),
         ("downloaded_at", pd.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')),
         ("source_url", "http://joshmadison.com/2007/05/09/toilet-paper-usage-analysis/"),
-        ('description', "...'it was this curiosity that led me to start keeping track of how much [toilet paper] I actually do use.' ~ Josh Madison")
+        ('description', "...'it was this curiosity that led me to start keeping track of how much [toilet paper] I actually do use.'"+os.linesep+ "~ Josh Madison")
     )
     with open('README.md', 'w') as README:
-        README.write((2*os.linesep).join(['{k}: {v}'.format(k=k, v=v)  for k,v in dataset_info]))
+        README.write((2*os.linesep).join(['<b>{k}</b>: {v}'.format(k=k, v=v)  for k,v in dataset_info]))
     sys.stdout.write('`README.md` created'+os.linesep)
     df.to_csv('toilet_paper_usage.csv', index=False)
     sys.stdout.write('`toilet_paper_usage.csv` created'+os.linesep)
